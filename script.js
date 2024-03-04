@@ -1,13 +1,14 @@
-//4.03.24 start spill
 document.addEventListener('DOMContentLoaded', function() {
     const car = document.getElementById('car');
-    let carPosition = window.innerWidth / 2 - 25; // Initial position
+    const gameContainer = document.getElementById('gameContainer');
+    let carPosition = gameContainer.offsetWidth / 2 - car.offsetWidth / 2; // Center the car
 
     function moveCar(event) {
+        const moveAmount = 10;
         if (event.key === "ArrowLeft") {
-            carPosition -= 10;
+            carPosition = Math.max(0, carPosition - moveAmount); // Prevent moving beyond left edge
         } else if (event.key === "ArrowRight") {
-            carPosition += 10;
+            carPosition = Math.min(gameContainer.offsetWidth - car.offsetWidth, carPosition + moveAmount); // Prevent moving beyond right edge
         }
         car.style.left = carPosition + 'px';
     }
