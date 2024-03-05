@@ -1,46 +1,23 @@
-export default class Ground {
-    constructor(ctx, width, height, speed, scaleRatio) {
-      this.ctx = ctx;
-      this.canvas = ctx.canvas;
-      this.width = width;
-      this.height = height;
-      this.speed = speed;
-      this.scaleRatio = scaleRatio;
+import {
+    getCustomProperty,
+    incrementCustomProperty,
+    setCustomProperty,
+  } from "./updateCustomProperty.js"
   
-      this.x = 0;
-      this.y = this.canvas.height - this.height;
+  const SPEED = 0.05
+  const groundElems = document.querySelectorAll("[data-ground]")
   
-      this.groundImage = new Image();
-      this.groundImage.src = "img/ground.png";
-    }
+  export function setupGround() {
+    setCustomProperty(groundElems[0], "--left", 0)
+    setCustomProperty(groundElems[1], "--left", 300)
+  }
   
-    update(gameSpeed, frameTimeDelta) {
-      this.x -= gameSpeed * frameTimeDelta * this.speed * this.scaleRatio;
-    }
+  export function updateGround(delta, speedScale) {
+    groundElems.forEach(ground => {
+      incrementCustomProperty(ground, "--left", delta * speedScale * SPEED * -1)
   
-    draw() {
-      this.ctx.drawImage(
-        this.groundImage,
-        this.x,
-        this.y,
-        this.width,
-        this.height
-      );
-  
-      this.ctx.drawImage(
-        this.groundImage,
-        this.x + this.width,
-        this.y,
-        this.width,
-        this.height
-      );
-  
-      if (this.x < -this.width) {
-        this.x = 0;
+      if (getCustomProperty(ground, "--left") <= -300) {
+        incrementCustomProperty(ground, "--left", 600)
       }
-    }
-  
-    reset() {
-      this.x = 0;
-    }
+    })
   }

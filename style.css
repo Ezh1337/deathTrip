@@ -1,36 +1,59 @@
-* {
-    padding: 0px;
-    margin: 0px;
+*, *::before, *::after {
+    box-sizing: border-box;
+    user-select: none;
   }
+  
   body {
+    margin: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-
-    user-select: none;
-    touch-action: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    outline: none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    align-items: center;
+    min-height: 100vh;
   }
-  canvas {
-    border: 0.1px solid grey;
+  
+  .world {
+    overflow: hidden;
+    position: relative;
   }
-  a {
-    color: rgb(161, 157, 157);
+  
+  .score {
+    position: absolute;
+    font-size: 3vmin;
+    right: 1vmin;
+    top: 1vmin;
   }
-  .links {
-    margin-bottom: 20px;
-    font-weight: normal;
-    font-size: 1.2em;
+  
+  .start-screen {
+    position: absolute;
+    font-size: 5vmin;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  .separator {
-    color: grey;
+  
+  .hide {
+    display: none;
+  }
+  
+  .ground {
+    --left: 0;
+    position: absolute;
+    width: 300%;
+    bottom: 0;
+    left: calc(var(--left) * 1%)
+  }
+  
+  .dino {
+    --bottom: 0;
+    position: absolute;
+    left: 1%;
+    height: 30%;
+    bottom: calc(var(--bottom) * 1%);
+  }
+  
+  .cactus {
+    position: absolute;
+    left: calc(var(--left) * 1%);
+    height: 30%;
+    bottom: 0;
   }
