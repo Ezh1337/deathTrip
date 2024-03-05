@@ -18,8 +18,7 @@
   
   .score {
     position: absolute;
-    font-size: 3vmin;
-    right: 1vmin;
+    font-size: 10vmin;
     top: 1vmin;
   }
   
