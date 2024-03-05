@@ -4,7 +4,7 @@
   }
   
   body {
-    margin: 0;
+    margin: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,9 +17,10 @@
   }
   
   .score {
-    position: absolute;
+    position: relative;
     font-size: 10vmin;
-    top: 1vmin;
+    align-items: center;
+  justify-content: center;
   }
   
   .start-screen {
