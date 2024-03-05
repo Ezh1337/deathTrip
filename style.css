@@ -1,26 +1,36 @@
-body, html {
-    height: 100%;
-    margin: 0;
+* {
+    padding: 0px;
+    margin: 0px;
+  }
+  body {
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: #ffffff;
-}
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
 
-#gameContainer {
-    width: 90%;
-    height: 200px;
-    position: relative;
-    background: #a92727;
-    overflow: hidden;
-}
-
-#car {
-    width: 50px;
-    height: 100px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    background: red;
-    transform: translateX(-50%);
-}
+    user-select: none;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  }
+  canvas {
+    border: 0.1px solid grey;
+  }
+  a {
+    color: rgb(161, 157, 157);
+  }
+  .links {
+    margin-bottom: 20px;
+    font-weight: normal;
+    font-size: 1.2em;
+  }
+  .separator {
+    color: grey;
+  }
