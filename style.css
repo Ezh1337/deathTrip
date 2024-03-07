@@ -19,7 +19,7 @@
   }
   
   .score {
-    position: relative;
+    margin-left: 37rem;
     font-size: 10vmin;
     align-items: center;
   justify-content: center;
@@ -28,7 +28,7 @@
   .start-screen {
     position: absolute;
     font-size: 5vmin;
-    top: 50%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
