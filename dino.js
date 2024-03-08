@@ -34,7 +34,7 @@ import {
   }
   
   export function setDinoLose() {
-    dinoElem.src = "imgs/explotion1.webp"
+
   }
   
   function handleRun(delta, speedScale) {

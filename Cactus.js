@@ -27,6 +27,7 @@ import {
   
     if (nextCactusTime <= 0) {
       createCactus()
+      createCactus2()
       nextCactusTime =
         randomNumberBetween(CACTUS_INTERVAL_MIN, CACTUS_INTERVAL_MAX) / speedScale
     }
@@ -42,7 +43,15 @@ import {
   function createCactus() {
     const cactus = document.createElement("img")
     cactus.dataset.cactus = true
-    cactus.src = "imgs/cactus.png"
+    cactus.src = "imgs/vodka.png"
+    cactus.classList.add("cactus")
+    setCustomProperty(cactus, "--left", 100)
+    worldElem.append(cactus)
+  }
+  function createCactus2() {
+    const cactus = document.createElement("img")
+    cactus.dataset.cactus = true
+    cactus.src = "imgs/kokain.png"
     cactus.classList.add("cactus")
     setCustomProperty(cactus, "--left", 100)
     worldElem.append(cactus)
