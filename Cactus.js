@@ -16,7 +16,12 @@ import {
       cactus.remove()
     })
   }
-  
+  export function setupCactus() {
+    nextCactusTime = CACTUS_INTERVAL_MIN
+    document.querySelectorAll("[data-cactus]").forEach(cactus => {
+      cactus.remove()
+    })
+  }
   export function updateCactus(delta, speedScale) {
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       incrementCustomProperty(cactus, "--left", delta * speedScale * SPEED * -1)

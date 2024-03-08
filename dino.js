@@ -34,7 +34,7 @@ import {
   }
   
   export function setDinoLose() {
-
+    dinoElem.src = "imgs/died.jpg"
   }
   
   function handleRun(delta, speedScale) {
