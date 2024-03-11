@@ -70,6 +70,7 @@ function handleJump(delta) {
     isJumping = false
   }
 
+
   yVelocity -= GRAVITY * delta
 }
 

@@ -15,6 +15,7 @@ function getRandomNumberInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
 function setupObstacles() {
   nextObstacleTime = getRandomNumberInRange(OBSTACLE_INTERVAL_MIN, OBSTACLE_INTERVAL_MAX)
   document.querySelectorAll("[data-obstacle]").forEach(obstacle => {
@@ -27,8 +28,10 @@ export function updateObstacle(delta, speedScale) {
     incrementCustomProperty(obstacle, "--left", delta * speedScale * SPEED * -1)
     if (getCustomProperty(obstacle, "--left") <= -100) {
       obstacle.remove()
+
     }
   })
+
 
   nextObstacleTime -= delta
   if (nextObstacleTime <= 0) {
@@ -46,6 +49,8 @@ function createRandomObstacle() {
   }
 }
 
+
+
 function createObstacle1() {
   const obstacle = document.createElement("img");
   obstacle.dataset.obstacle = true;
@@ -54,6 +59,7 @@ function createObstacle1() {
   setCustomProperty(obstacle, "--left", 100);
   worldElem.append(obstacle);
 }
+
 
 function createObstacle2() {
   const obstacle = document.createElement("img");
@@ -71,3 +77,6 @@ export function getObstacleRects() {
 }
 
 export { setupObstacles };
+
+  
+
