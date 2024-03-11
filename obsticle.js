@@ -39,7 +39,7 @@ import {
       nextCactusTime =
         randomNumberBetween(CACTUS_INTERVAL_MIN, CACTUS_INTERVAL_MAX) / speedScale
     }
-    nextCactusTime -= delta
+    nextCactusTime -= delta  
   }
   
   export function getCactusRects() {
