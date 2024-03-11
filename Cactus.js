@@ -16,7 +16,7 @@ import {
       cactus.remove()
     })
   }
-  export function setupCactus() {
+  export function setupCactus2() {
     nextCactusTime = CACTUS_INTERVAL_MIN
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       cactus.remove()
