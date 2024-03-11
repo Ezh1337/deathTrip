@@ -6,7 +6,7 @@ import {
 
   let text = document.getElementsByClassName("start-screen").value
   const dinoElem = document.querySelector("[data-dino]")
-  const JUMP_SPEED = 0.5
+  const JUMP_SPEED = 0.57
   const GRAVITY = 0.0018
   const DINO_FRAME_COUNT = 2
   const FRAME_TIME = 100
@@ -47,7 +47,7 @@ import {
   }
   
   export function setDinoLose() {
-    dinoElem.src = "imgs/died.jpg"
+    dinoElem.src = "imgs/explotion2.webp"
   }
   
   function handleRun(delta, speedScale) {
