@@ -4,6 +4,7 @@ import {
     getCustomProperty,
   } from "./updateCustomProperty.js"
 
+  let text = document.getElementsByClassName("start-screen").value
   const dinoElem = document.querySelector("[data-dino]")
   const JUMP_SPEED = 0.5
   const GRAVITY = 0.0018
@@ -69,6 +70,7 @@ import {
     }
   
     yVelocity -= GRAVITY * delta
+   
   }
   
   function onJump(e) {
@@ -76,4 +78,5 @@ import {
   
     yVelocity = JUMP_SPEED
     isJumping = true
+  
   }
