@@ -10,6 +10,7 @@ const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
 
+
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
 document.addEventListener("keydown", handleStart, { once: true })

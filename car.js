@@ -3,7 +3,7 @@ import {
     setCustomProperty,
     getCustomProperty,
   } from "./updateCustomProperty.js"
-  
+
   const dinoElem = document.querySelector("[data-dino]")
   const JUMP_SPEED = 0.45
   const GRAVITY = 0.0015
@@ -14,6 +14,18 @@ import {
   let dinoFrame
   let currentFrameTime
   let yVelocity
+
+  export function debounce(func, timeout = 300){
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+  }
+  function saveInput(){
+    console.log('Saving data');
+  }
+  const processChange = debounce(() => saveInput());
   export function setupDino() {
     isJumping = false
     dinoFrame = 0
