@@ -10,25 +10,27 @@ import {
   const worldElem = document.querySelector("[data-world]")
   
   let nextCactusTime
-  export function setupCactus() {
+  export function setupvodka() {
     nextCactusTime = CACTUS_INTERVAL_MIN
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       cactus.remove()
     })
   }
-  export function setupCactus2() {
+  export function setupkokain() {
     nextCactusTime = CACTUS_INTERVAL_MIN
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       cactus.remove()
     })
   }
-  export function updateCactus(delta, speedScale) {
+  export function updatevodka(delta, speedScale) {
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       incrementCustomProperty(cactus, "--left", delta * speedScale * SPEED * -1)
       if (getCustomProperty(cactus, "--left") <= -100) {
         cactus.remove()
       }
     })
+
+    
   
     if (nextCactusTime <= 0) {
       createCactus()
@@ -45,7 +47,7 @@ import {
     })
   }
   
-  function createCactus() {
+  function createvodka() {
     const cactus = document.createElement("img")
     cactus.dataset.cactus = true
     cactus.src = "imgs/vodka.png"
@@ -53,10 +55,10 @@ import {
     setCustomProperty(cactus, "--left", 100)
     worldElem.append(cactus)
   }
-  function createCactus2() {
+  function createkokain() {
     const cactus = document.createElement("img")
     cactus.dataset.cactus = true
-    cactus.src = "imgs/kokain.png"
+    cactus.src = "imgs/kokain.jpg"
     cactus.classList.add("cactus")
     setCustomProperty(cactus, "--left", 100)
     worldElem.append(cactus)
