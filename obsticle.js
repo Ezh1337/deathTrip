@@ -48,7 +48,7 @@ import {
       nextCactusTime =
         tilfeldigTall / speedScale
     }
-    nextCactusTime -= delta
+    nextCactusTime -= delta  
   }
   
   export function getCactusRects() {
