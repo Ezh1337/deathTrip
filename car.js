@@ -70,7 +70,7 @@ import {
     }
   
     yVelocity -= GRAVITY * delta
-   
+    dinoElem.src = `imgs/car.png`
   }
   
   function onJump(e) {
@@ -78,5 +78,5 @@ import {
   
     yVelocity = JUMP_SPEED
     isJumping = true
-  
+    dinoElem.src = `imgs/car.png`
   }

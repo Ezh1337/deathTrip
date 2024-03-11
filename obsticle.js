@@ -46,7 +46,7 @@ import {
       createCactus1()
       createCactus2()
       nextCactusTime =
-        randomNumberBetween(CACTUS_INTERVAL_MIN, CACTUS_INTERVAL_MAX) / speedScale
+        tilfeldigTall / speedScale
     }
     nextCactusTime -= delta
   }
@@ -57,17 +57,7 @@ import {
     })
   }
 
-  function obsticleChooser() {
-    return Math.floor(Math.random() * 10);
-  }
   
-  const choice = obsticleChooser();
-  
-  if (choice < 5) {
-    createCactus1();
-  } else {
-    createCactus2();
-  }
   
   function createCactus1() {
     const cactus = document.createElement("img");
@@ -87,10 +77,17 @@ import {
     worldElem.append(cactus);
   }
   
-  
-
-
-  
-  function randomNumberBetween(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+  function obsticleChooser() {
+    return Math.floor(Math.random() * 10);
   }
+  
+  const choice = obsticleChooser();
+  
+  if (choice < 5) {
+    createCactus1();
+  } else {
+    createCactus2();
+  }
+
+
+  
