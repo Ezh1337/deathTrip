@@ -45,7 +45,7 @@
     left: calc(var(--left) * 1%)
   }
   
-  .dino {
+  .car {
     --bottom: 0;
     position: absolute;
     left: 1%;
