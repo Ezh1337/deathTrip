@@ -22,7 +22,7 @@ import {
       cactus.remove()
     })
   }
-  export function updateCactus(delta, speedScale) {
+  export function updateObsticle(delta, speedScale) {
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       incrementCustomProperty(cactus, "--left", delta * speedScale * SPEED * -1)
       if (getCustomProperty(cactus, "--left") <= -100) {
@@ -47,23 +47,40 @@ import {
       return cactus.getBoundingClientRect()
     })
   }
+
+  function obsticleChooser() {
+    return Math.floor(Math.random() * 10);
+  }
   
-  export function createCactus1() {
-      const cactus = document.createElement("img")
-      cactus.dataset.cactus = true
-      cactus.src = "imgs/vodka.png"
-      cactus.classList.add("cactus")
-      setCustomProperty(cactus, "--left", 100)
-      worldElem.append(cactus)
-    }
-   export function createCactus2() {
-      const cactus = document.createElement("img")
-      cactus.dataset.cactus = true
-      cactus.src = "imgs/kokain.jpg"
-      cactus.classList.add("cactus")
-      setCustomProperty(cactus, "--left", 100)
-      worldElem.append(cactus)
-    }
+  const choice = obsticleChooser();
+  
+  if (choice < 5) {
+    createCactus1();
+  } else {
+    createCactus2();
+  }
+  
+  function createCactus1() {
+    const cactus = document.createElement("img");
+    cactus.dataset.cactus = true;
+    cactus.src = "imgs/vodka.png";
+    cactus.classList.add("cactus");
+    setCustomProperty(cactus, "--left", 100);
+    worldElem.append(cactus);
+  }
+  
+  function createCactus2() {
+    const cactus = document.createElement("img");
+    cactus.dataset.cactus = true;
+    cactus.src = "imgs/kokain.jpg";
+    cactus.classList.add("cactus");
+    setCustomProperty(cactus, "--left", 100);
+    worldElem.append(cactus);
+  }
+  
+  
+
+
   
   function randomNumberBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)

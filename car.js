@@ -37,7 +37,7 @@ import {
     document.addEventListener("keydown", onJump)
   }
   
-  export function updateDino(delta, speedScale) {
+  export function updateCar(delta, speedScale) {
     handleRun(delta, speedScale)
     handleJump(delta)
   }

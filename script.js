@@ -1,6 +1,6 @@
 import { updateGround, setupGround } from "./ground.js"
-import { updateDino, setupDino, getDinoRect, setDinoLose } from "./car.js"
-import { updateCactus, createCactus1, createCactus2, setupvodka, getCactusRects, setupkokain  } from "./obsticle.js"
+import { updateCar, setupDino, getDinoRect, setDinoLose } from "./car.js"
+import { updateObsticle, setupvodka, getCactusRects, setupkokain  } from "./obsticle.js"
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
@@ -27,8 +27,8 @@ function update(time) {
   const delta = time - lastTime
 
   updateGround(delta, speedScale)
-  updateDino(delta, speedScale)
-  updateCactus(delta, speedScale)
+  updateCar(delta, speedScale)
+  updateObsticle(delta, speedScale)
   updateSpeedScale(delta)
   updateScore(delta)
   if (checkLose()) return handleLose()
