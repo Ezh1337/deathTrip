@@ -4,6 +4,15 @@ import {
     getCustomProperty,
   } from "./updateCustomProperty.js"
   
+
+  function getRandomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+   
+  // Eksempel på bruk
+  var tilfeldigTall = getRandomNumberInRange(700, 2000);
+  
+  
   const SPEED = 0.05
   const CACTUS_INTERVAL_MIN = 500
   const CACTUS_INTERVAL_MAX = 2000
@@ -11,13 +20,13 @@ import {
   
   let nextCactusTime
   export function setupvodka() {
-    nextCactusTime = CACTUS_INTERVAL_MIN
+    nextCactusTime = tilfeldigTall
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       cactus.remove()
     })
   }
   export function setupkokain() {
-    nextCactusTime = CACTUS_INTERVAL_MIN
+    nextCactusTime = tilfeldigTall
     document.querySelectorAll("[data-cactus]").forEach(cactus => {
       cactus.remove()
     })
