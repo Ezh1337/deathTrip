@@ -19,6 +19,7 @@ let speedScale;
 let score;
 let lives = 3;
 const livesElem = document.querySelector("[data-lives]");
+let inputEnabled = true;
 
 function updateLivesDisplay() {
   livesElem.textContent = '❤️'.repeat(lives);
@@ -31,22 +32,38 @@ function checkLose() {
   const carRect = getCarRect();
   const hasCollision = getObstacleRects().some(rect => isCollision(rect, carRect));
   
-  if (hasCollision && !invincible) {
+  if (hasCollision && !invincible && inputEnabled) {
     lives--; // Decrement lives
     updateLivesDisplay();
     setCarInvincible(); 
+    handleCollision( )
     SPEED_SCALE_INCREASE = SPEED_SCALE_INCREASE * 3// Make the car temporarily invincible
 
     if (lives <= 0) {
       // No more lives left, handle game over
       return true;
     }
+    invincible = true;
+    setTimeout(() => {
+    invincible = false;
+    }, 2000); // Set a delay of 2 seconds before the car can collide again
+
+    // Add any additional collision handling here
+  }
 
     // Provide feedback for collision, like flashing the car
     flashCar();
-  }
+  
 
   return false;
+}
+function handleCollision() {
+  inputEnabled = false;  // Disable input
+  
+  // Use setTimeout to re-enable input after a delay
+  setTimeout(() => {
+      inputEnabled = true;
+  }, 1000);  // Delay in milliseconds (1000ms = 1 seconds)
 }
 
 function setCarInvincible() {
@@ -56,17 +73,17 @@ function setCarInvincible() {
   }, 1000); // Duration of invincibility in milliseconds
 }
 
-function flashCar() {
+
   // Add a class to the car to change its appearance
   // Then remove it after some time to indicate invincibility duration
-  const carElem = document.querySelector('[data-car]');
-  carElem.classList.add('invincible');
-
-
-  setTimeout(() => {
-    carElem.classList.remove('invincible');
-  }, 1000); // Match this duration to the invincibility timeout
-}
+function flashCar() {
+    const carElem = document.querySelector('[data-car]');
+    carElem.classList.add('invincible');
+    setTimeout(() => {
+      carElem.classList.remove('invincible');
+    }, 1000); // The duration here should match the invincibility period
+  }
+   // Match this duration to the invincibility timeout
 
 // Remember to reset invincibility when the game starts
 function handleStart() {

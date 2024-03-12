@@ -15,6 +15,7 @@ let carFrame
 let currentFrameTime
 let yVelocity
 
+
 export function debounce(func, timeout = 300){
   let timer;
   return (...args) => {
@@ -74,9 +75,10 @@ function handleJump(delta) {
   yVelocity -= GRAVITY * delta
 }
 
-function onJump(e) {
-  if (e.code !== "Space" || isJumping) return
 
-  yVelocity = JUMP_SPEED
-  isJumping = true
+function onJump(e) {
+  if (e.code !== "Space") return;  // Check if input is enabled
+  
+  yVelocity = JUMP_SPEED;
+  isJumping = true;
 }

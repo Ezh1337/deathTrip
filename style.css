@@ -12,6 +12,7 @@ body {
   align-items: center;
   height: 100vh; /* Using height instead of min-height for full screen height */
   background-color: rgb(170, 162, 162);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 /* World container */
@@ -96,11 +97,15 @@ body {
 }
 .site-footer {
   background-color: yellow; /* Yellow background */
-  padding: 1rem; /* Add some padding around the content */
-  text-align: center; /* Center the content */
-  display: flex; /* Use flexbox for layout */
-  justify-content: center; /* Center items on the main axis */
-  align-items: center; /* Center items on the cross axis */
+  position: fixed; /* or use 'sticky' if you want it to push up with content */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: yellow;
+  display: flex;
+  justify-content: space-around; /* This will give space around the items */
+  align-items: center; /* Vertically centers items in the container */
+  z-index: 1000; /* Ensures the footer is above other content */
 }
 
 .footer-img {
