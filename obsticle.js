@@ -54,9 +54,9 @@ function createRandomObstacle() {
 function createObstacle1() {
   const obstacle = document.createElement("img");
   obstacle.dataset.obstacle = true;
-  obstacle.src = "imgs/vodka.png"; // Image for the first obstacle
+  obstacle.src = "imgs/vodka2.png"; // Image for the second obstacle
   obstacle.classList.add("obstacle");
-  setCustomProperty(obstacle, "--left", 100);
+  setCustomProperty(obstacle, "--bottom", 100);
   worldElem.append(obstacle);
 }
 
@@ -64,9 +64,9 @@ function createObstacle1() {
 function createObstacle2() {
   const obstacle = document.createElement("img");
   obstacle.dataset.obstacle = true;
-  obstacle.src = "imgs/kokain.jpg"; // Image for the second obstacle
+  obstacle.src = "imgs/kokain.png"; // Image for the second obstacle
   obstacle.classList.add("obstacle");
-  setCustomProperty(obstacle, "--left", 100);
+  setCustomProperty(obstacle, "--bottom", 100);
   worldElem.append(obstacle);
 }
 

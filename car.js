@@ -49,7 +49,7 @@ export function getCarRect() {
 }
 
 export function setCarCrash() {
-  carElem.src = "imgs/explotion1.webp"
+  carElem.src = "imgs/explotion1.png"
 }
 
 function handleRun(delta, speedScale) {

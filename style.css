@@ -1,62 +1,110 @@
+
+  /* Global styles */
 *, *::before, *::after {
-    box-sizing: border-box;
-    user-select: none;
-  }
-  
-  body {
-    margin: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: rgb(0, 0, 0);
-   
-  }
-  
-  .world {
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .score {
-    margin-left: 37rem;
-    font-size: 10vmin;
-    align-items: center;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  margin: 0; /* Changed to 0 to remove the default margin */
+  display: flex;
   justify-content: center;
-  }
+  align-items: center;
+  height: 100vh; /* Using height instead of min-height for full screen height */
+  background-color: rgb(170, 162, 162);
+}
+
+/* World container */
+.world {
+  overflow: hidden;
+  position: relative;
+  /* Define a specific size for your game area */
+  width: 800px; /* Example width */
+  height: 400px; /* Example height */
+}
+
+/* Score display */
+.score {
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10vmin;
+  z-index: 3; /* Ensure score is above all game elements */
+}
+
+/* Start screen */
+.start-screen {
+  position: absolute;
+  font-size: 5vmin;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Ensure start screen is above all game elements */
+}
+
+/* Ground elements */
+.ground {
+  --left: 0;
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--left) * 1%);
+  height: 20px; /* Example height */
+  width: 300%; /* Width relative to its parent container */
+  z-index: 1;
+}
+
+/* Car element */
+.car {
+  --bottom: 0;
+  position: absolute;
+  bottom: calc(var(--bottom) * 1%);
+  left: 10%; /* Example position */
+  height: 30%; /* Height relative to its parent container */
+  z-index: 2;
+}
+
+/* Obstacle elements */
+.obstacle {
+  --left: 100; /* Starting position, 100% to the right off-screen */
+  position: absolute;
+  bottom: 0; /* Bottom aligned with the base of the world */
+  left: calc(var(--left) * 1%);
+  height: 30%; /* Height relative to its parent container */
+  width: 10%; /* Width relative to its parent container */
+  z-index: 2;
   
-  .start-screen {
-    position: absolute;
-    font-size: 5vmin;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .hide {
-    display: none;
-  }
-  
-  .ground {
-    --left: 0;
-    position: absolute;
-    width: 300%;
-    bottom: 0;
-    left: calc(var(--left) * 1%)
-  }
-  
-  .car {
-    --bottom: 0;
-    position: absolute;
-    left: 1%;
-    height: 30%;
-    bottom: calc(var(--bottom) * 1%);
-  }
-  
-  .obstacle {
-    position: absolute;
-    left: calc(var(--left) * 1%);
-    height: 25%;
-    width: 15%;
-    bottom: 0;
-  }
+}
+
+.hide {
+  display: none;
+}
+.lives {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 3vmin; /* Adjust the size as needed */
+  z-index: 3; /* Make sure it's visible above other elements */
+}
+.car.invincible {
+  animation: flash 0.1s linear 10; /* Flash 10 times for 0.1s each */
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.site-footer {
+  background-color: yellow; /* Yellow background */
+  padding: 1rem; /* Add some padding around the content */
+  text-align: center; /* Center the content */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center items on the main axis */
+  align-items: center; /* Center items on the cross axis */
+}
+
+.footer-img {
+  margin: 0 1rem; /* Add space between the images */
+  width: auto; /* Keep the original image width */
+  height: 100px; /* Example height, adjust as needed */
+}

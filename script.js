@@ -4,7 +4,7 @@ import { updateObstacle, setupObstacles, getObstacleRects } from "./obsticle.js"
 
 const WORLD_WIDTH = 100;
 const WORLD_HEIGHT = 30;
-const SPEED_SCALE_INCREASE = 0.00001;
+let SPEED_SCALE_INCREASE = 0.00001;
 
 const worldElem = document.querySelector("[data-world]");
 const scoreElem = document.querySelector("[data-score]");
@@ -17,6 +17,73 @@ document.addEventListener("keydown", handleStart, { once: true });
 let lastTime;
 let speedScale;
 let score;
+let lives = 3;
+const livesElem = document.querySelector("[data-lives]");
+
+function updateLivesDisplay() {
+  livesElem.textContent = '❤️'.repeat(lives);
+}
+let invincible = false; // Flag to check if the car is temporarily invincible
+
+function checkLose() {
+  if (invincible) return false; // If the car is invincible, no loss is registered
+
+  const carRect = getCarRect();
+  const hasCollision = getObstacleRects().some(rect => isCollision(rect, carRect));
+  
+  if (hasCollision && !invincible) {
+    lives--; // Decrement lives
+    updateLivesDisplay();
+    setCarInvincible(); 
+    SPEED_SCALE_INCREASE = SPEED_SCALE_INCREASE * 3// Make the car temporarily invincible
+
+    if (lives <= 0) {
+      // No more lives left, handle game over
+      return true;
+    }
+
+    // Provide feedback for collision, like flashing the car
+    flashCar();
+  }
+
+  return false;
+}
+
+function setCarInvincible() {
+  invincible = true;
+  setTimeout(() => {
+    invincible = false; // Car becomes vulnerable again after a timeout
+  }, 1000); // Duration of invincibility in milliseconds
+}
+
+function flashCar() {
+  // Add a class to the car to change its appearance
+  // Then remove it after some time to indicate invincibility duration
+  const carElem = document.querySelector('[data-car]');
+  carElem.classList.add('invincible');
+
+
+  setTimeout(() => {
+    carElem.classList.remove('invincible');
+  }, 1000); // Match this duration to the invincibility timeout
+}
+
+// Remember to reset invincibility when the game starts
+function handleStart() {
+  lastTime = null;
+  speedScale = 1;
+  score = 0;
+  lives = 3; // Reset lives
+  updateLivesDisplay(); // Update the display
+  setupGround();
+  setupCar();
+  setupObstacles();
+  startScreenElem.classList.add("hide");
+  invincible = false; // Ensure the car starts as not invincible
+  window.requestAnimationFrame(update);
+}
+
+
 
 function update(time) {
   if (lastTime == null) {
@@ -37,10 +104,6 @@ function update(time) {
   window.requestAnimationFrame(update);
 }
 
-function checkLose() {
-  const carRect = getCarRect();
-  return getObstacleRects().some(rect => isCollision(rect, carRect));
-}
 
 function isCollision(rect1, rect2) {
   return (
@@ -60,25 +123,26 @@ function updateScore(delta) {
   scoreElem.textContent = Math.floor(score);
 }
 
-function handleStart() {
-  lastTime = null;
-  speedScale = 1;
-  score = 0;
-  setupGround();
-  setupCar();
-  setupObstacles(); // Updated to setupObstacles which now handles all obstacle setups
-  startScreenElem.classList.add("hide");
-  window.requestAnimationFrame(update);
-}
+
+ 
+  
+
 
 function handleLose() {
   setCarCrash();
   setTimeout(() => {
-    document.addEventListener("keydown", handleStart, { once: true });
-    startScreenElem.classList.remove("hide");
-  }, 100);
+   resetGame();
+  }, 1000);
 }
 
+
+
+
+function resetGame() {
+  document.addEventListener("keydown", handleStart, { once: true });
+  startScreenElem.classList.remove("hide");
+
+}
 function setPixelToWorldScale() {
   let worldToPixelScale;
   if (window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT) {
