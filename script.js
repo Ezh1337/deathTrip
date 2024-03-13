@@ -152,7 +152,9 @@ function handleLose() {
   }, 1000);
 }
 
-
+document.getElementById("reloaded").onclick = function reload(){
+ location.href = "index.html"
+}
 
 
 function resetGame() {

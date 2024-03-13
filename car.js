@@ -8,6 +8,8 @@ const CAR_FRAME_COUNT = 2
 const FRAME_TIME = 100
 const JUMP_SPEED = 0.57
 const GRAVITY = 0.0018
+const CEILING_HEIGHT = 90; // Adjust this value to set the height of the ceiling
+
 
 const carElem = document.querySelector("[data-car]")
 let isJumping
@@ -62,17 +64,32 @@ function handleRun(delta, speedScale) {
 }
 
 function handleJump(delta) {
-  if (!isJumping) return
+  if (!isJumping) return;
 
-  incrementCustomProperty(carElem, "--bottom", yVelocity * delta)
+  // Calculate the new Y position with velocity
+  let newBottom = getCustomProperty(carElem, "--bottom") + yVelocity * delta;
 
-  if (getCustomProperty(carElem, "--bottom") <= 0) {
-    setCustomProperty(carElem, "--bottom", 0)
-    isJumping = false
+  // Check if the new position exceeds the ceiling height
+  if (newBottom > CEILING_HEIGHT) {
+    // If it does, set it to the ceiling height
+    setCustomProperty(carElem, "--bottom", CEILING_HEIGHT);
+    // Stop the upward movement by reversing the Y velocity or setting it to 0
+    yVelocity = 0;
+    // Start descending
+  } else {
+    // If it doesn't exceed the ceiling height, update the position as normal
+    setCustomProperty(carElem, "--bottom", newBottom);
   }
 
+  // Apply gravity to decrease the velocity for the next frame
+  yVelocity -= GRAVITY * delta;
 
-  yVelocity -= GRAVITY * delta
+  // Check if the car is back on the ground
+  if (newBottom <= 0) {
+    setCustomProperty(carElem, "--bottom", 0);
+    isJumping = false;
+    yVelocity = 0;
+  }
 }
 
 
