@@ -111,5 +111,5 @@ body {
 .footer-img {
   margin: 0 1rem; /* Add space between the images */
   width: auto; /* Keep the original image width */
-  height: 100px; /* Example height, adjust as needed */
+  height: 50px; /* Example height, adjust as needed */
 }

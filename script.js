@@ -1,4 +1,4 @@
-import { updateGround, setupGround } from "./Ground.js";
+import { updateGround, setupGround } from "./ground.js";
 import { updateCar, setupCar, getCarRect, setCarCrash } from "./car.js";
 import { updateObstacle, setupObstacles, getObstacleRects } from "./obsticle.js";
 
