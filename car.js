@@ -65,21 +65,21 @@ function handleRun(delta, speedScale) {
 
 function handleJump(delta) {
   if (!isJumping) return;
-
-  // Calculate the new Y position with velocity
-  let newBottom = getCustomProperty(carElem, "--bottom") + yVelocity * delta;
-
-  // Check if the new position exceeds the ceiling height
-  if (newBottom > CEILING_HEIGHT) {
-    // If it does, set it to the ceiling height
-    setCustomProperty(carElem, "--bottom", CEILING_HEIGHT);
-    // Stop the upward movement by reversing the Y velocity or setting it to 0
+  
+  incrementCustomProperty(carElem, "--bottom", yVelocity * delta);
+  yVelocity -= GRAVITY * delta;
+  
+  const currentBottom = getCustomProperty(carElem, "--bottom");
+  if (currentBottom <= 0) {
+    setCustomProperty(carElem, "--bottom", 0);
+    isJumping = false;
     yVelocity = 0;
-    // Start descending
-  } else {
-    // If it doesn't exceed the ceiling height, update the position as normal
-    setCustomProperty(carElem, "--bottom", newBottom);
+  } else if (currentBottom > MAX_JUMP_HEIGHT) {
+    // If the car is above max height, ensure it doesn't go any higher
+    yVelocity = Math.max(yVelocity, 0);
   }
+}
+
 
   // Apply gravity to decrease the velocity for the next frame
   yVelocity -= GRAVITY * delta;
@@ -90,12 +90,15 @@ function handleJump(delta) {
     isJumping = false;
     yVelocity = 0;
   }
-}
+
 
 
 function onJump(e) {
-  if (e.code !== "Space") return;  // Check if input is enabled
+  if (e.code !== "Space" || isJumping) return;
   
+  // ... rest of the onJump logic ...
   yVelocity = JUMP_SPEED;
   isJumping = true;
 }
+
+
